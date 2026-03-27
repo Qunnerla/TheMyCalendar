@@ -63,7 +63,44 @@ body, html { height: 100%; overflow: hidden; background-color: #1a1a1a; }
 
 .legend-item { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 0.85rem; color: #555; font-weight: 600; }
 .color-box { width: 25px; height: 15px; border-radius: 6px; }
-.bg-green { background-color: #dcedc8; } .bg-blue { background-color: #bbdefb; }
+.b/* =========================================================
+   📱 โหมดมือถือ (Mobile Responsive)
+========================================================= */
+@media screen and (max-width: 768px) {
+    .calendar-container { scroll-snap-type: none; overflow-x: hidden; }
+    .month-section { height: auto; min-height: 100vh; padding: 15px 10px; border-bottom: 5px solid #e0e0e0; }
+    .scroll-wrapper { overflow-x: hidden; }
+    
+    .layout-grid { flex-direction: column; min-width: 100%; gap: 15px; }
+    
+    .calendar-main { gap: 4px; }
+    .day-name { font-size: 0.75rem; padding-bottom: 5px; }
+    
+    /* 🌟 บังคับขนาดช่องให้คงที่ เล็กและพอดีเหมือนเดือนเมษา */
+    .day-cell { 
+        height: 75px;        /* บังคับความสูงตายตัว */
+        min-height: unset;   /* ล้างค่าเดิม */
+        padding: 4px; 
+        border-radius: 8px; 
+        overflow: hidden;    /* ซ่อนสิ่งที่ล้นออกไป (ใช้การกดดู Popup แทน) */
+    }
+    
+    .date-num { font-size: 0.85rem; margin-bottom: 3px; text-align: center; }
+    
+    /* ย่อป้ายกิจกรรมให้สั้นลง ตัดคำเนียนๆ */
+    .event { 
+        font-size: 0.55rem; 
+        padding: 2px 4px; 
+        border-left: 2px solid; 
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis; 
+        margin-bottom: 2px; 
+    }
+    
+    .month-header-left h1 { font-size: 2rem; }
+    .month-header-left .year-badge { font-size: 1rem; padding: 3px 10px; }
+}g-green { background-color: #dcedc8; } .bg-blue { background-color: #bbdefb; }
 .bg-purple { background-color: #e1bee7; } .bg-red { background-color: #ffcdd2; }
 
 /* =========================================================
@@ -79,27 +116,3 @@ body, html { height: 100%; overflow: hidden; background-color: #1a1a1a; }
 .no-event { color: #888; text-align: center; margin-top: 20px; font-size: 1rem; }
 @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
-/* =========================================================
-   📱 โหมดมือถือ (Mobile Responsive)
-========================================================= */
-@media screen and (max-width: 768px) {
-    /* ปิด Scroll Snap ให้เลื่อนบนมือถือได้ธรรมชาติ */
-    .calendar-container { scroll-snap-type: none; overflow-x: hidden; }
-    .month-section { height: auto; min-height: 100vh; padding: 15px 10px; border-bottom: 5px solid #e0e0e0; }
-    .scroll-wrapper { overflow-x: hidden; }
-    
-    /* เปลี่ยนจากซ้าย-ขวา เป็น บน-ล่าง */
-    .layout-grid { flex-direction: column; min-width: 100%; gap: 15px; }
-    
-    /* ปรับตารางปฏิทินให้พอดีจอมือถือ */
-    .calendar-main { gap: 4px; }
-    .day-name { font-size: 0.8rem; padding-bottom: 5px; }
-    .day-cell { min-height: 70px; padding: 3px; border-radius: 8px; }
-    .date-num { font-size: 0.9rem; margin-bottom: 2px; text-align: center; }
-    
-    /* ย่อป้ายกิจกรรมให้สั้นลง (ตัดคำว่ายาวเกินไป) */
-    .event { font-size: 0.55rem; padding: 2px 4px; border-left: 2px solid; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px; }
-    
-    .month-header-left h1 { font-size: 2rem; }
-    .month-header-left .year-badge { font-size: 1rem; padding: 3px 10px; }
-}
